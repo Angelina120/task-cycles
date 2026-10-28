@@ -3,18 +3,64 @@
   Используя цикл for, просуммируйте все четные числа в диапазоне между этими значениями (включительно)
   и верните итоговый результат.
 */
-export function rangeSum(start, end) {}
+export function rangeSum(start, end) {
+    let sum = 0;
+
+    // На случай, если start больше end, определяем минимальное и максимальное значения
+    const min = Math.min(start, end);
+    const max = Math.max(start, end);
+
+    // Проходим циклом от минимума до максимума включительно
+    for (let i = min; i <= max; i++) {
+        // Проверяем, является ли число четным
+        if (i % 2 === 0) {
+            sum += i;
+        }
+    }
+
+    return sum;
+}
 
 /*
   В функцию iterationCount() приходит неотрицательное число.
   Используя цикл while, выполняйте деление этого числа на два до тех пор, пока результат деления больше 0.1
   и верните количество потребовавшихся итераций (т.е. сколько раз пришлось выполнить деление).
 */
-export function iterationCount(a) {}
+export function iterationCount(a) {
+    let count = 0;
+    let current = a;
+
+    // Пока текущее значение больше 0.1, делим его на 2 и увеличиваем счетчик
+    while (current > 0.1) {
+        current = current / 2;
+        count++;
+    }
+
+    return count;
+}
 
 /*
   В функцию symbolsReplace() приходит строка текста.
   Используя цикл do while, замените в тексте каждый третий символ на символ нижнего подчеркивания
   и верните итоговый результат.
 */
-export function symbolsReplace(message) {}
+export function symbolsReplace(message) {
+    let result = '';
+    let index = 0;
+
+    // Если строка пустая, возвращаем её как есть (иначе do...while выполнится хотя бы раз)
+    if (message.length === 0) return message;
+
+    do {
+        // Индексация в JS начинается с 0. Каждый третий символ имеет индексы 2, 5, 8...
+        // Проверяем, что (index + 1) делится на 3 без остатка
+        if ((index + 1) % 3 === 0) {
+            result += '_';
+        } else {
+            result += message[index];
+        }
+        index++;
+    } while (index < message.length);
+
+    return result;
+}
